@@ -3,10 +3,42 @@
 import Image from "next/image";
 import { useState } from "react";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { Github, Linkedin, Mail } from "lucide-react";
+import { CodeXml, Database, Figma, FileCode, Github, Key, Layers, Linkedin, Mail, Terminal } from "lucide-react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"About" | "Skills" | "Projects">()
+  const [activeSkill, setActiveSkill] = useState<"frontend.tsx" | "backend.ts" | "tools.sh">("frontend.tsx")
+
+  const skills = {
+    frontend:[
+      { name: "HTML", icon: "/html.svg" },
+      { name: "CSS", icon: "/css.svg" },
+      { name: "JavaScript", icon: "/js.svg" },
+      { name: "Tailwind", icon: "/tailwind.svg" },
+      { name: "React", icon: "/react.png" },
+      { name: "TypeScript", icon: "/ts.png" },
+      { name: "Next.js", icon: "/nextjs.svg" },
+    ],
+    backend:[
+      { name: "NodeJs", icon: "/html.svg" },
+      { name: "JavaScript", icon: "/css.svg" },
+      { name: "Express.js", icon: "/js.svg" },
+      { name: "SqlLite", icon: "/tailwind.svg" },
+      { name: "TypeScript", icon: "/ts.png" },
+
+    ],
+    tools:[
+      { name: "Docker", icon: "/html.svg" },
+      { name: "Git", icon: "/css.svg" },
+      { name: "Shell", icon: "/css.svg" },
+    ],
+    design: [
+      {name: "UI design", animation:"UI.lottie"},
+      {name: "UX Research", animation:"UX.lottie"},
+      {name: "Prototyping", animation:"prototype.lottie"},
+      {name: "Design Systems", animation:"System.lottie"}
+    ]
+  }
 
   return (
     <main className="bg-[#12100B]">
@@ -105,7 +137,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* about-section */}
+        {/* About Section */}
         <div className="mt-100">
           <div className="px-10 flex items-center justify-center gap-18">
             <div>
@@ -139,7 +171,167 @@ export default function Home() {
                     src={"/discord.png"}
                     className="w-6 h-6 text-[#D9D9D9]"
                     />
+                </button> 
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Skiils Section */}
+        <div className="mt-100 space-y-30 ">
+          <div className="flex flex-col gap-6 items-center justify-center">
+            <h1 className="font-medium text-[72px] tracking-wide text-white">
+              What I bring to the table 
+            </h1>
+            <p className="font-medium text-[30px] tracking-normal text-white/70">
+            A mix of design thinking and technical precision to deliver impactful solutions.
+            </p>
+          </div>
+          {/* Coding Skills */}
+          <div className="flex  justify-center gap-10 space-y-15">
+            <div className="rounded-xl w-fit shadow-xl border border-[#737271]/50">
+              <div className="flex p-4  items-center justify-between rounded-t-xl bg-[#1D2327] border-b border-[#737271]/50">
+                <div className="flex gap-2 items-center">
+                  <CodeXml className="text-[#0B86CA]/70 w-8 h-8"/>
+                  <h2 className="text-white text-2xl ">Development</h2>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-[#EB5858]"></div>
+                  <div className="w-4 h-4 rounded-full bg-[#F1D04E]"></div>
+                  <div className="w-4 h-4 rounded-full bg-[#4EC26F]"></div>
+                </div>
+              </div>
+              <div className="">
+                <button
+                  className={`border border-t-0 border-l-0 border-[#737271]/50  ${activeSkill === "frontend.tsx" ? "bg-[#0B86CA]/40" : ""}`}
+                  onClick={() => setActiveSkill("frontend.tsx")}>
+                  <div className="flex gap-2 items-center p-3 px-8">
+                    <FileCode className={`text-[#ACACAC]  w-6 h-6 `}/>
+                    <h2 className="text-[#ACACAC] text-2xl ">frontend.tsx</h2>
+                  </div>
                 </button>
+
+                <button
+                  className={`border border-t-0 border-l-0 border-[#737271]/50 ${activeSkill === "backend.ts" ? "bg-[#0B86CA]/40" : ""}`}
+                  onClick={() => setActiveSkill("backend.ts")}>
+                  <div className="flex gap-2 items-center p-3 px-8">
+                    <Database className={`text-[#ACACAC]  w-6 h-6 `}/>
+                    <h2 className="text-[#ACACAC] text-2xl ">backend.ts</h2>
+                  </div>
+                </button>
+
+                <button
+                  className={`border border-t-0 border-l-0 border-r-0 border-[#737271]/50 ${activeSkill === "tools.sh" ? "bg-[#0B86CA]/40" : ""}`}
+                  onClick={() => setActiveSkill("tools.sh")}>
+                  <div className="flex gap-2 items-center p-3 px-8">
+                    <Terminal className={`text-[#ACACAC]  w-6 h-6 `}/>
+                    <h2 className="text-[#ACACAC] text-2xl ">tools.sh</h2>
+                  </div>
+                </button>
+              </div>
+              {activeSkill === "frontend.tsx" &&
+              <div className=" p-10 grid grid-cols-4 gap-8">
+                {skills.frontend.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="rounded-xl bg-[#56A8EB]/15 w-fit p-3">
+                    <img
+                      src={skill.icon} alt={skill.name} 
+                      className="w-20 h-20"/>
+                  </div>
+                ))}
+              </div>
+            }
+
+            {activeSkill === "backend.ts" &&
+              <div className=" p-10 grid grid-cols-4 gap-8">
+                {skills.backend.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="rounded-xl bg-[#56A8EB]/15 w-fit p-3">
+                    <img
+                      src={skill.icon} alt={skill.name} 
+                      className="w-20 h-20"/>
+                  </div>
+                ))}
+              </div>
+            }
+
+            {activeSkill === "tools.sh" &&
+              <div className=" p-10 grid grid-cols-4 gap-8">
+                {skills.tools.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="rounded-xl bg-[#56A8EB]/15 w-fit p-3">
+                    <img
+                      src={skill.icon} alt={skill.name} 
+                      className="w-20 h-20"/>
+                  </div>
+                ))}
+              </div>
+            }
+            </div>
+
+            <div className="flex flex-col items-center gap-8">
+              <h1 className="font-medium text-[30px] tracking-wide text-white/85">
+              Building functional, scalable, and <br />efficient digital solutions
+              </h1>
+              <img 
+                src="/code_skill.png"
+                alt="coding skills" 
+                className="objec-cover w-80 h-80"/>
+            </div>
+          </div>
+          {/* Design Skills */}
+          <div className="flex  justify-center gap-10">
+            <div className="flex flex-col items-center gap-8">
+              <h1 className="font-medium text-[30px] tracking-wide text-white/85">
+                Crafting intuitive and engaging <br/>user experiences
+              </h1>
+              <img 
+                src="/design_skill.png"
+                alt="design skills" 
+                className="objec-cover w-80 h-80"/>
+            </div>
+
+            <div className="relative w-fit shadow-xl border border-[#0B86CA]/70">
+              <div className="absolute -right-2.5 -bottom-2.5 bg-[#0B86CA] w-5 h-5"></div>
+              <div className="absolute -left-2.5 -bottom-2.5 bg-[#0B86CA] w-5 h-5"></div>
+              <div className="absolute -right-2.5 -top-2.5 bg-[#0B86CA] w-5 h-5"></div>
+              <div className="absolute -left-2.5 -top-2.5 bg-[#0B86CA] w-5 h-5"></div>
+              <div className="flex p-4  items-center justify-between  bg-[#1D2327] border-b border-[#0B86CA]/70">
+                <div className="flex gap-2 items-center">
+                  <Figma className="text-[#0B86CA]/70 w-8 h-8"/>
+                  <h2 className="text-white text-2xl ">Design cnavas</h2>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-[#EB5858]"></div>
+                  <div className="w-4 h-4 rounded-full bg-[#F1D04E]"></div>
+                  <div className="w-4 h-4 rounded-full bg-[#4EC26F]"></div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 p-4">
+                {skills.design.map((skill)=> (
+                  <div className="rounded-xl bg-[#56A8EB]/15">
+                      <div className="flex gap-2 items-center p-3 pr-6 bg-[#888D8F]/50 rounded-t-xl">
+                        <Layers className=" text-[#61DAFB]  w-6 h-6 "/>
+                        <h2 className="text-white/80">{skill.name}</h2>
+                      </div>
+                      <div className="flex items-center justify-center">
+                        <div className=" w-30 h-30">
+                          <DotLottieReact
+                            src="/UI.lottie"
+                            loop
+                            autoplay
+                          />
+                        </div>
+                      </div>
+                      <div className=" p-1 px-3 flex items-center justify-between">
+                        <p className="text-[#849CBE]/70 text-xs">Frame 1</p>
+                        <p className="text-[#849CBE]/70 text-xs">120*96</p>
+                      </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -147,4 +339,4 @@ export default function Home() {
       </div>
     </main>
   );
-}
+}   
