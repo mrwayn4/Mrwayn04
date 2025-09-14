@@ -282,7 +282,7 @@ export default function Home() {
             </div>
           </div>
           {/* Design Skills */}
-          <div className="flex  justify-center gap-10">
+          <div className="flex justify-center gap-10">
             <div className="flex flex-col items-center gap-8">
               <h1 className="font-medium text-[30px] tracking-wide text-white/85">
                 Crafting intuitive and engaging <br/>user experiences
