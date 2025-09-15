@@ -393,21 +393,22 @@
 
 "use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { CodeXml, Database, Figma, FileCode, Github, Key, Layers, Linkedin, Mail, Terminal } from "lucide-react";
+import Image from "next/image"
+import Link from "next/link"
+import { useState } from "react"
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import { CodeXml, Database, Figma, FileCode, Github, Key, Layers, Linkedin, Mail, Terminal } from "lucide-react"
+import { motion } from "framer-motion"
 
 // Types for better type safety
 interface Skill {
-  name: string;
-  icon: string;
+  name: string
+  icon: string
 }
 
 interface DesignSkill {
-  name: string;
-  animation: string;
+  name: string
+  animation: string
 }
 
 interface Project {
@@ -479,31 +480,41 @@ export default function Home() {
               <div className="bg-white/20 rounded-4xl px-4 py-2">
                 <div className="flex items-center justify-center gap-4">
                   <button
-                    className={`px-6 py-2.5 text-white font-semibold transition-colors duration-300 ${
-                      activeTab === "About" ? "bg-[#0B86CA]/70 rounded-full" : "hover:bg-[#1B1610]/10 rounded-full"
-                    }`}
-                    onClick={() => setActiveTab("About")}
-                  >
-                    About
-                  </button>
-                  
-                  <button
-                    className={`px-6 py-2.5 text-white font-semibold transition-colors duration-300 ${
-                      activeTab === "Skills" ? "bg-[#0B86CA]/70  rounded-full" : "hover:bg-[#1B1610]/10 rounded-full"
-                    }`}
-                    onClick={() => setActiveTab("Skills")}
-                  >
-                    Skills
-                  </button>
-                  
-                  <button
-                    className={`px-6 py-2.5 text-white font-semibold transition-colors duration-300 ${
-                      activeTab === "Projects" ? "bg-[#0B86CA]/70 rounded-full" : "hover:bg-[#1B1610]/10 rounded-full"
-                    }`}
-                    onClick={() => setActiveTab("Projects")}
-                  >
-                    Projects
-                  </button>
+                  className={`px-6 py-2.5 text-white font-semibold transition-colors duration-300 ${
+                    activeTab === "About" ? "bg-[#0B86CA]/70 rounded-full" : "hover:bg-[#1B1610]/10 rounded-full"
+                  }`}
+                  onClick={() => {
+                    setActiveTab("About")
+                    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
+                  }}
+                >
+                  About
+                </button>
+                
+                <button
+                  className={`px-6 py-2.5 text-white font-semibold transition-colors duration-300 ${
+                    activeTab === "Skills" ? "bg-[#0B86CA]/70 rounded-full" : "hover:bg-[#1B1610]/10 rounded-full"
+                  }`}
+                  onClick={() => {
+                    setActiveTab("Skills")
+                    document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" })
+                  }}
+                >
+                  Skills
+                </button>
+                
+                <button
+                  className={`px-6 py-2.5 text-white font-semibold transition-colors duration-300 ${
+                    activeTab === "Projects" ? "bg-[#0B86CA]/70 rounded-full" : "hover:bg-[#1B1610]/10 rounded-full"
+                  }`}
+                  onClick={() => {
+                    setActiveTab("Projects")
+                    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+                  }}
+                >
+                  Projects
+                </button>
+                
                 </div>
               </div>
             </div>
@@ -564,10 +575,16 @@ export default function Home() {
         </div>
 
         {/* IMPROVED ABOUT SECTION */}
-        <section className="py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
+        <section id="about" className="py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              <div className="order-2 lg:order-1">
+              <motion.div 
+                className="order-2 lg:order-1"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
                 <div className="relative">
                   <img 
                     src="/about-profile.png" 
@@ -575,58 +592,69 @@ export default function Home() {
                     className="w-full max-w-md mx-auto lg:max-w-full rounded-2xl shadow-2xl"
                   />
                 </div>
-              </div>
-              
-              <div className="order-1 lg:order-2 space-y-6 md:space-y-8 text-center lg:text-left">
-                <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-white">
+              </motion.div>
+
+              {/* Text side */}
+              <motion.div 
+                className="order-1 lg:order-2 space-y-6 md:space-y-8 text-center lg:text-left"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                {/* Heading */}
+                <motion.h2 
+                  className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-white"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
                   Bridging Design <br />
                   <span className="text-[#0B86CA]">Development</span> Into <br />
                   Seamless Digital <br />
                   <span className="text-[#0B86CA]">Experiences</span>
-                </h2>
-                
-                <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-white/70 max-w-2xl mx-auto lg:mx-0">
+                </motion.h2>
+
+                {/* Paragraph */}
+                <motion.p 
+                  className="text-lg md:text-xl lg:text-2xl leading-relaxed text-white/70 max-w-2xl mx-auto lg:mx-0"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
                   I'm Idder, a Full-Stack Developer & UI/UX Designer with a passion for blending creativity and technology. Currently at 1337 Coding School, I'm honing my expertise in software engineering while building projects that unite clean design with scalable development.
-                </p>
-                
-                <div className="flex items-center justify-center lg:justify-start gap-4 flex-wrap">
-                  <Link
-                    href="mailto:idder@example.com"
-                    className="border border-white/30 rounded-xl p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:border-[#0B86CA]"
-                  >
+                </motion.p>
+
+                {/* Social icons */}
+                <motion.div 
+                  className="flex items-center justify-center lg:justify-start gap-4 flex-wrap"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  viewport={{ once: true }}
+                >
+                  <Link href="mailto:idder@example.com" className="border border-white/30 rounded-xl p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:border-[#0B86CA]">
                     <Mail className="w-6 h-6 text-white" />
                   </Link>
-                  <Link
-                    href="https://linkedin.com/in/idder"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="border border-white/30 rounded-xl p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:border-[#0B86CA]"
-                  >
+                  <Link href="https://linkedin.com/in/idder" target="_blank" rel="noopener noreferrer" className="border border-white/30 rounded-xl p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:border-[#0B86CA]">
                     <Linkedin className="w-6 h-6 text-white" />
                   </Link>
-                  <Link
-                    href="https://github.com/idder"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="border border-white/30 rounded-xl p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:border-[#0B86CA]"
-                  >
+                  <Link href="https://github.com/idder" target="_blank" rel="noopener noreferrer" className="border border-white/30 rounded-xl p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:border-[#0B86CA]">
                     <Github className="w-6 h-6 text-white" />
                   </Link>
                   <button className="border border-white/30 rounded-xl p-3 cursor-pointer transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:border-[#0B86CA]">
-                    <img 
-                      src="/discord.png"
-                      alt="Discord"
-                      className="w-6 h-6"
-                    />
+                    <img src="/discord.png" alt="Discord" className="w-6 h-6" />
                   </button>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </section>
 
         {/* IMPROVED SKILLS SECTION */}
-        <section className="py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
+        <section id="skills" className="py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto space-y-16 md:space-y-24">
             {/* Header */}
             <div className="text-center space-y-6">
@@ -815,7 +843,7 @@ export default function Home() {
                         </div>
                         <div className="p-2 px-3 flex items-center justify-between text-xs text-white/50">
                           <span>Frame 1</span>
-                          <span>120×96</span>
+                          <span>120*96</span>
                         </div>
                       </div>
                     ))}
@@ -827,7 +855,7 @@ export default function Home() {
         </section>
 
         {/* IMPROVED PROJECTS SECTION */}
-        <section className="py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
+        <section id="projects" className="py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
             {/* Header */}
             <div className="text-center space-y-6">
