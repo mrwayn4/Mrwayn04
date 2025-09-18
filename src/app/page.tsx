@@ -490,7 +490,6 @@ export default function Home() {
                 >
                   About
                 </button>
-                
                 <button
                   className={`px-6 py-2.5 text-white font-semibold transition-colors duration-300 ${
                     activeTab === "Skills" ? "bg-[#0B86CA]/70 rounded-full" : "hover:bg-[#1B1610]/10 rounded-full"
